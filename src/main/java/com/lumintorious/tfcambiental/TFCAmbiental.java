@@ -85,7 +85,7 @@ public class TFCAmbiental
     }
 
     private void addTooltips(ItemTooltipEvent event) {
-        if(!Objects.requireNonNull(event.getPlayer()).level.isClientSide()) return;
+        if(event.getPlayer() != null && !event.getPlayer().level.isClientSide()) return;
         float warmth = 0;
         float insulation = 0;
         if(event.getItemStack().getItem() instanceof ArmorItem armorItem) {
