@@ -37,7 +37,7 @@ public interface BlockEntityTemperatureProvider {
             float temp = forge.getTemperature();
             float change =  temp / 140f;
             if(hasProtection(player)){
-                change = Math.min(0.4f, change);
+                change = change * 0.7f;
             }
             return TempModifier.defined("charcoal_forge", change, 0);
         }else {
@@ -50,7 +50,7 @@ public interface BlockEntityTemperatureProvider {
             float temp = pit.getTemperature();
             float change =  temp / 100f;
             if(hasProtection(player)){
-                change = Math.min(0.4f, change);
+                change = change * 0.7f;
             }
             return TempModifier.defined("fire_pit", Math.min(6f, change), 0);
         }else {
@@ -62,7 +62,7 @@ public interface BlockEntityTemperatureProvider {
         if(entity instanceof BloomeryBlockEntity bloomery) {
             float change = bloomery.getRemainingTicks() > 0 ? 4f : 0f;
             if(hasProtection(player)){
-                change = Math.min(0.4f, change);
+                change = change * 0.7f;
             }
             return TempModifier.defined("bloomery", change, 0);
         }else {
