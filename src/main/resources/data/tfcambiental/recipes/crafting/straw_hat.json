@@ -1,16 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XXX",
-    "X X",
-    "   "
+    "XX"
   ],
   "key": {
     "X": {
-      "item": "tfc:wool_cloth"
+      "item": "tfc:straw"
     }
   },
   "result": {
-    "item": "tfcambiental:wool_hat"
+    "item": "tfcambiental:straw_hat"
   }
 }

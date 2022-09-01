@@ -1,7 +1,9 @@
 package com.lumintorious.tfcambiental.api;
 
+import com.lumintorious.tfcambiental.TFCAmbiental;
 import com.lumintorious.tfcambiental.TFCAmbientalConfig;
 import com.lumintorious.tfcambiental.capability.TemperatureCapability;
+import com.lumintorious.tfcambiental.item.TFCAmbientalItems;
 import com.lumintorious.tfcambiental.modifier.EnvironmentalModifier;
 import com.lumintorious.tfcambiental.modifier.TempModifier;
 import com.lumintorious.tfcambiental.modifier.TempModifierStorage;
@@ -13,6 +15,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Optional;
 
@@ -25,10 +28,11 @@ public interface BlockEntityTemperatureProvider {
     }
 
     private static boolean hasProtection(Player player){
-        ItemStack stack = player.getItemBySlot(EquipmentSlot.CHEST);
+        var item = CuriosApi.getCuriosHelper().findCurios(player, TFCAmbientalItems.LEATHER_APRON.get());
+        if(item.isEmpty()) return false;
         float environmentTemperature = EnvironmentalModifier.getEnvironmentTemperatureWithTimeOfDay(player);
         float AVERAGE = TFCAmbientalConfig.COMMON.averageTemperature.get().floatValue();
-        return !stack.isEmpty() && environmentTemperature > AVERAGE;
+        return environmentTemperature > AVERAGE;
     }
 
     public static Optional<TempModifier> handleCharcoalForge(Player player, BlockEntity entity) {
@@ -37,7 +41,7 @@ public interface BlockEntityTemperatureProvider {
             float temp = forge.getTemperature();
             float change =  temp / 140f;
             if(hasProtection(player)){
-                change = change * 0.7f;
+                change = change * 0.3f;
             }
             return TempModifier.defined("charcoal_forge", change, 0);
         }else {
@@ -50,7 +54,7 @@ public interface BlockEntityTemperatureProvider {
             float temp = pit.getTemperature();
             float change =  temp / 100f;
             if(hasProtection(player)){
-                change = change * 0.7f;
+                change = change * 0.3f;
             }
             return TempModifier.defined("fire_pit", Math.min(6f, change), 0);
         }else {
@@ -62,7 +66,7 @@ public interface BlockEntityTemperatureProvider {
         if(entity instanceof BloomeryBlockEntity bloomery) {
             float change = bloomery.getRemainingTicks() > 0 ? 4f : 0f;
             if(hasProtection(player)){
-                change = change * 0.7f;
+                change = change * 0.3f;
             }
             return TempModifier.defined("bloomery", change, 0);
         }else {

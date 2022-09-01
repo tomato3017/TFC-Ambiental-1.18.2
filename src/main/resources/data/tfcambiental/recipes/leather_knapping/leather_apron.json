@@ -1,0 +1,12 @@
+{
+  "type":"tfc:leather_knapping",
+  "pattern": [
+    "XXXXX",
+    " XXX ",
+    " XXX ",
+    " XXX ",
+    "  X  "
+  ],
+  "result":{
+    "item":"tfcambiental:leather_apron"
+  }}

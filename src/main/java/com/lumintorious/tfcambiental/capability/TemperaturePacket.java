@@ -26,7 +26,6 @@ public class TemperaturePacket {
     public void handle(NetworkEvent.Context context) {
         context.enqueueWork(() -> {
             if(context.getSender() != null) {
-                System.out.println("RECEIVING SIGNAL");
                 context.getSender().getCapability(TemperatureCapability.CAPABILITY).ifPresent(cap -> {
                     cap.deserializeNBT(tag);
                 });

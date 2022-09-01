@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tfcambiental:wool_sweater",
+    "tfcambiental:silk_shirt",
+    "tfcambiental:burlap_shirt",
+    "tfcambiental:insulated_leather_tunic"
+  ]
+}

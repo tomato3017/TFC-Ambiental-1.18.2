@@ -5,6 +5,9 @@
   "effect.tfcambiental.cool.name": "Cooling Down",
   "effect.tfcambiental.warm.name": "Warming Up",
 
+  "item.tfcambiental.straw_hat": "Straw Hat",
+  "item.tfcambiental.leather_apron": "Leather Apron",
+
   "item.tfcambiental.wool_hat": "Wool Hat",
   "item.tfcambiental.wool_sweater": "Wool Sweater",
   "item.tfcambiental.wool_pants": "Wool Pants",
@@ -20,7 +23,17 @@
   "item.tfcambiental.burlap_pants": "Burlap Pants",
   "item.tfcambiental.burlap_shoes": "Burlap Shoes",
 
-  "tfcambiental.tooltip.warmth": "%s Warmth",
-  "tfcambiental.tooltip.insulation": "%s Insulation",
-  "tfcambiental.tooltip.sun_protection": "Protects against direct sunlight"
+  "item.tfcambiental.insulated_leather_hat": "Insulated Leather Hat",
+  "item.tfcambiental.insulated_leather_tunic": "Insulated Leather Tunic",
+  "item.tfcambiental.insulated_leather_pants": "Insulated Leather Pants",
+  "item.tfcambiental.insulated_leather_boots": "Insulated Leather Boots",
+
+  "tfcambiental.tooltip.warmth": "Warmth: %s",
+  "tfcambiental.tooltip.insulation": "Insulation: %s",
+  "tfcambiental.tooltip.sun_protection": "Protects against direct sunlight",
+
+  "curios.identifier.clothes_hat": "Clothes (Head)",
+  "curios.identifier.clothes_torso": "Clothes (Torso)",
+  "curios.identifier.clothes_pants": "Clothes (Legs)",
+  "curios.identifier.clothes_socks": "Clothes (Feet)"
 }

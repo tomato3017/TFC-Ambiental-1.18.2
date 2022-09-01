@@ -1,16 +1,16 @@
 package com.lumintorious.tfcambiental.api;
 
 import com.lumintorious.tfcambiental.TFCAmbientalConfig;
+import com.lumintorious.tfcambiental.item.ClothesItem;
 import com.lumintorious.tfcambiental.item.TemperatureAlteringMaterial;
 import com.lumintorious.tfcambiental.modifier.EnvironmentalModifier;
 import com.lumintorious.tfcambiental.modifier.TempModifier;
 import com.lumintorious.tfcambiental.modifier.TempModifierStorage;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LightLayer;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.Optional;
 
@@ -19,13 +19,9 @@ public interface EquipmentTemperatureProvider {
     Optional<TempModifier> getModifier(Player player, ItemStack stack);
 
     static Optional<TempModifier> handleClothes(Player player, ItemStack stack) {
-        if(stack.getItem() instanceof ArmorItem armorItem) {
-            if(armorItem.getMaterial() instanceof TemperatureAlteringMaterial tempMaterial) {
+        if(stack.getItem() instanceof ClothesItem clothesItem) {
+            if(clothesItem.getMaterial() instanceof TemperatureAlteringMaterial tempMaterial) {
                 return Optional.of(tempMaterial.getTempModifier(stack));
-            } else if(armorItem.getMaterial() == ArmorMaterials.LEATHER) {
-                return TempModifier.defined(stack.getItem().getRegistryName().toString() + "_" + armorItem.getEquipmentSlot(stack), 2.5f, 0.15f);
-            } else {
-                return TempModifier.defined(stack.getItem().getRegistryName().toString() + "_" + armorItem.getEquipmentSlot(stack), 2f, 0.0f);
             }
         }
         return TempModifier.none();
@@ -33,8 +29,8 @@ public interface EquipmentTemperatureProvider {
 
     static Optional<TempModifier> handleSunlightCap(Player player, ItemStack stack) {
         float AVERAGE = TFCAmbientalConfig.COMMON.averageTemperature.get().floatValue();
-        if(stack.getItem() instanceof ArmorItem armor) {
-            if(armor.getSlot() == EquipmentSlot.HEAD) {
+        if(stack.getItem() instanceof ClothesItem clothesItem) {
+            if(clothesItem.getEquivalentSlot() == EquipmentSlot.HEAD) {
                 if(player.level.getBrightness(LightLayer.SKY, player.getOnPos().above()) > 14) {
                     float envTemp = EnvironmentalModifier.getEnvironmentTemperatureWithTimeOfDay(player);
                     if(envTemp > AVERAGE) {
@@ -52,11 +48,13 @@ public interface EquipmentTemperatureProvider {
     }
 
     static void evaluateAll(Player player, TempModifierStorage storage) {
-        Iterable<ItemStack> armorItems = player.getArmorSlots();
-        for(ItemStack stack : armorItems) {
-            for(var fn : AmbientalRegistry.EQUIPMENT) {
-                storage.add(fn.getModifier(player, stack));
+        CuriosApi.getCuriosHelper().getEquippedCurios(player).ifPresent(c -> {
+            for(int i = 0; i < c.getSlots(); i++) {
+                ItemStack stack = c.getStackInSlot(i);
+                for(var fn : AmbientalRegistry.EQUIPMENT) {
+                    storage.add(fn.getModifier(player, stack));
+                }
             }
-        }
+        });
     }
 }

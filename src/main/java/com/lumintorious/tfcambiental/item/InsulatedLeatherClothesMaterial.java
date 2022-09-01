@@ -10,12 +10,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
-public class BurlapClothesMaterial implements ArmorMaterial, TemperatureAlteringMaterial {
-    public static final BurlapClothesMaterial MATERIAL = new BurlapClothesMaterial();
+public class InsulatedLeatherClothesMaterial implements ArmorMaterial, TemperatureAlteringMaterial {
+    public static final InsulatedLeatherClothesMaterial MATERIAL = new InsulatedLeatherClothesMaterial();
 
     @Override
     public int getDurabilityForSlot(EquipmentSlot pSlot) {
-        return 3000;
+        return 2500;
     }
 
     @Override
@@ -35,12 +35,12 @@ public class BurlapClothesMaterial implements ArmorMaterial, TemperatureAltering
 
     @Override
     public @NotNull Ingredient getRepairIngredient() {
-        return Ingredient.of(new ItemStack(TFCItems.BURLAP_CLOTH.get(), 1));
+        return Ingredient.of(new ItemStack(TFCItems.WOOL_CLOTH.get(), 1));
     }
 
     @Override
     public @NotNull String getName() {
-        return "tfcambiental:burlap_cloth";
+        return "tfcambiental:insulated_leather";
     }
 
     @Override
@@ -55,6 +55,6 @@ public class BurlapClothesMaterial implements ArmorMaterial, TemperatureAltering
 
     @Override
     public TempModifier getTempModifier(ItemStack stack) {
-        return new TempModifier(stack.getItem().getRegistryName().toString(), -0.5f, -0.25f);
+        return new TempModifier(stack.getItem().getRegistryName().toString(), 2f, -0.15f);
     }
 }

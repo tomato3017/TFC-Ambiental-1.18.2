@@ -10,12 +10,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
-public class BurlapClothesMaterial implements ArmorMaterial, TemperatureAlteringMaterial {
-    public static final BurlapClothesMaterial MATERIAL = new BurlapClothesMaterial();
+public class StrawClothesMaterial implements ArmorMaterial, TemperatureAlteringMaterial {
+    public static final StrawClothesMaterial MATERIAL = new StrawClothesMaterial();
 
     @Override
     public int getDurabilityForSlot(EquipmentSlot pSlot) {
-        return 3000;
+        return 100;
     }
 
     @Override
@@ -30,17 +30,17 @@ public class BurlapClothesMaterial implements ArmorMaterial, TemperatureAltering
 
     @Override
     public @NotNull SoundEvent getEquipSound() {
-        return SoundEvents.WOOL_PLACE;
+        return SoundEvents.GRASS_BREAK;
     }
 
     @Override
     public @NotNull Ingredient getRepairIngredient() {
-        return Ingredient.of(new ItemStack(TFCItems.BURLAP_CLOTH.get(), 1));
+        return Ingredient.of(new ItemStack(TFCItems.STRAW.get(), 1));
     }
 
     @Override
     public @NotNull String getName() {
-        return "tfcambiental:burlap_cloth";
+        return "tfcambiental:straw";
     }
 
     @Override
@@ -55,6 +55,6 @@ public class BurlapClothesMaterial implements ArmorMaterial, TemperatureAltering
 
     @Override
     public TempModifier getTempModifier(ItemStack stack) {
-        return new TempModifier(stack.getItem().getRegistryName().toString(), -0.5f, -0.25f);
+        return new TempModifier(stack.getItem().getRegistryName().toString(), 0, -0.1f);
     }
 }

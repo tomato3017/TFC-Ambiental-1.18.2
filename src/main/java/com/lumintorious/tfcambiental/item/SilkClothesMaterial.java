@@ -15,12 +15,12 @@ public class SilkClothesMaterial implements ArmorMaterial, TemperatureAlteringMa
 
     @Override
     public int getDurabilityForSlot(EquipmentSlot pSlot) {
-        return 300;
+        return 3000;
     }
 
     @Override
     public int getDefenseForSlot(EquipmentSlot pSlot) {
-        return 1;
+        return 0;
     }
 
     @Override

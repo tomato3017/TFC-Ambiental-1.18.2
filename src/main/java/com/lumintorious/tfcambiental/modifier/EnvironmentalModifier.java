@@ -49,7 +49,6 @@ public class EnvironmentalModifier {
 
     public static Optional<TempModifier> handleTimeOfDay(Player player) {
         int dayTicks = (int) (player.level.dayTime() % 24000);
-        System.out.println(dayTicks);
         if(dayTicks < 6000) return TempModifier.defined("morning", 2f, 0);
         else if(dayTicks < 12000) return TempModifier.defined("afternoon", 4f, 0);
         else if(dayTicks < 18000) return TempModifier.defined("evening", 1f, 0);
