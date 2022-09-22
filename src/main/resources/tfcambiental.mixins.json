@@ -3,8 +3,9 @@
   "minVersion": "0.8",
   "package": "com.lumintorious.tfcambiental.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "${refmap_target}refmap.json",
-  "client": [
+  "refmap": "tfcambiental.refmap.json",
+  "mixins": [
+    "GrassColorMixin"
   ],
   "injectors": {
     "defaultRequire": 1
