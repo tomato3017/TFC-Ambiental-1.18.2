@@ -11,12 +11,15 @@ import net.dries007.tfc.common.blockentities.BloomeryBlockEntity;
 import net.dries007.tfc.common.blockentities.CharcoalForgeBlockEntity;
 import net.dries007.tfc.common.blockentities.FirepitBlockEntity;
 import net.dries007.tfc.common.blockentities.LampBlockEntity;
+import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.capabilities.heat.IHeatBlock;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import top.theillusivec4.curios.api.CuriosApi;
 
+import java.util.Locale;
 import java.util.Optional;
 
 @FunctionalInterface
@@ -72,6 +75,16 @@ public interface BlockEntityTemperatureProvider {
         }else {
             return TempModifier.none();
         }
+    }
+
+    public static Optional<TempModifier>  handleIHeatBlock(Player player, BlockEntity entity) {
+        return entity.getCapability(HeatCapability.BLOCK_CAPABILITY).map(cap -> {
+            return new TempModifier(
+                entity.getClass().getName().toLowerCase(Locale.ROOT),
+                cap.getTemperature() / 140f,
+                0
+            );
+        });
     }
 
 //    public static Optional<TempModifier> handleLamps(Player player, BlockEntity entity) {
