@@ -69,10 +69,21 @@ public class GrassColorMixin {
     ) {
         if(pos == null) return;
         int originalColor = TFCColors.getGrassColor(pos, tintIndex);
-        Color color = new Color(mapColor(originalColor, pos));
-        color = blendByWeight(Color.WHITE, color, 0.2);
-        callbackInfo.setReturnValue(color.getRGB());
+        callbackInfo.setReturnValue(mapColor(originalColor, pos));
     }
+
+//    @Inject(method = "getSeasonalFoliageColor", at = @At("RETURN"), cancellable = true, remap = false)
+//    private static void onGetSeasonalFoliageColor(
+//            @Nullable BlockPos pos,
+//            int tintIndex,
+//            CallbackInfoReturnable<Integer> callbackInfo
+//    ) {
+//        if(pos == null) return;
+//        int originalColorInt = callbackInfo.getReturnValueI();
+//        Color originalColor = new Color(originalColorInt);
+//        Color color = new Color(mapColor(originalColorInt, pos));
+//        callbackInfo.setReturnValue(color.getRGB());
+//    }
 
     private static int mapColor(int originalColor, BlockPos pos) {
         Color col = new Color(originalColor, true);

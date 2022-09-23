@@ -83,7 +83,7 @@ public class TFCAmbientalConfig {
 
             noiseDarkness = builder
                     .comment("How dark should the noise be at most? Set to 0 to disable noise entirely")
-                    .defineInRange("noiseDarkness", 0.15d, 0, 0.5d);
+                    .defineInRange("noiseDarkness", 0.18d, 0, 0.5d);
 
             noiseLevels = builder
                     .comment("How many darkness levels should there be?")
@@ -95,19 +95,19 @@ public class TFCAmbientalConfig {
 
             seasonColorSummer = builder
                     .comment("ARGB code for summer coloring in hexadecimal. Default: 1222FF11")
-                    .define("seasonColorSummer", "1222FF11");
+                    .define("seasonColorSummer", "1233FF11");
 
             seasonColorAutumn = builder
-                    .comment("ARGB code for autumn coloring in hexadecimal. Default: 77FFDD22")
-                    .define("seasonColorAutumn", "77FFDD22");
+                    .comment("ARGB code for autumn coloring in hexadecimal. Default: EAFFDD55")
+                    .define("seasonColorAutumn", "EAFFDD55");
 
             seasonColorWinter = builder
-                    .comment("ARGB code for winter coloring in hexadecimal. Default: 30FFFFFF")
-                    .define("seasonColorWinter", "30FFFFFF");
+                    .comment("ARGB code for winter coloring in hexadecimal. Default: 6AFFEEEE")
+                    .define("seasonColorWinter", "6AFFEEEE");
 
             seasonColorSpring = builder
                     .comment("ARGB code for spring coloring in hexadecimal. Default: 3311CFD1")
-                    .define("seasonColorSpring", "3311CFD1");
+                    .define("seasonColorSpring", "3311CAD7");
         }
     }
 }
