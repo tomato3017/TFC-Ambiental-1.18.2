@@ -30,6 +30,7 @@ public class TFCAmbientalConfig {
         public final ForgeConfigSpec.DoubleValue temperatureChangeSpeed;
         public final ForgeConfigSpec.DoubleValue goodTemperatureChangeSpeed;
         public final ForgeConfigSpec.DoubleValue badTemperatureChangeSpeed;
+        public final ForgeConfigSpec.DoubleValue undergroundTempChangeSpeed;
 
         CommonImpl(ForgeConfigSpec.Builder builder) {
             averageTemperature = builder
@@ -65,10 +66,15 @@ public class TFCAmbientalConfig {
                     .comment("How quickly player temperature changes towards the target environment temperature when it's not beneficial")
                     .defineInRange("badTemperatureChangeSpeed",  1F, 0F, 50F);
 
+            undergroundTempChangeSpeed = builder
+                    .comment("Base speed at which the underground speed changes. Set to 0 to disable.")
+                    .defineInRange("undergroundTempChange",-6F,-40F,0F);
+
         }
     }
 
     public static class ClientImpl {
+        public final ForgeConfigSpec.BooleanValue alwaysShowTemp;
         public final ForgeConfigSpec.DoubleValue noiseDarkness;
         public final ForgeConfigSpec.IntValue noiseLevels;
         public final ForgeConfigSpec.IntValue noiseArea;
@@ -80,6 +86,9 @@ public class TFCAmbientalConfig {
 
         ClientImpl(ForgeConfigSpec.Builder builder) {
             builder.comment("For all ARGB values, set to 00000000 to disable the feature in that season");
+
+            alwaysShowTemp = builder.comment("Always show temp display without having to sneak")
+                    .define("alwaysShowTemp", false);
 
             noiseDarkness = builder
                     .comment("How dark should the noise be at most? Set to 0 to disable noise entirely")

@@ -109,7 +109,7 @@ public class TFCAmbientalGuiRenderer {
                 drawTexturedModalRect(gui, stack, mid - 8, armorRowHeight - 4 + offsetYArrow, 16, 16, MINUS);
             }
         }
-        if((player.isCrouching()  /* || !TFCAmbientalConfig.CLIENT.sneakyDetails */) && tempSystem instanceof TemperatureCapability) {
+        if((player.isCrouching() || TFCAmbientalConfig.CLIENT.alwaysShowTemp.get()  /* || !TFCAmbientalConfig.CLIENT.sneakyDetails */) && tempSystem instanceof TemperatureCapability) {
             TemperatureCapability sys = (TemperatureCapability)tempSystem;
             float targetFormatted = sys.getTarget();
             float tempFormatted = sys.getTemperature();

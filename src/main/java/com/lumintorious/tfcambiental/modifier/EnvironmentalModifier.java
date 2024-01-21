@@ -101,8 +101,9 @@ public class EnvironmentalModifier {
     }
 
     public static Optional<TempModifier> handleUnderground(Player player) {
-        if(getSkylight(player) < 2) {
-            return TempModifier.defined("underground", -6f, 0.2f);
+        Double undergroundTempSpeed = TFCAmbientalConfig.COMMON.undergroundTempChangeSpeed.get();
+        if(getSkylight(player) < 2 && undergroundTempSpeed > 0f) {
+            return TempModifier.defined("underground", undergroundTempSpeed.floatValue(), 0.2f);
         }else{
             return TempModifier.none();
         }
